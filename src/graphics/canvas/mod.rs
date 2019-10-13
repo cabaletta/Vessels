@@ -136,6 +136,8 @@ pub enum Rasterizable {
     Path(Box<Path>),
 }
 
+
+
 impl From<Path> for Rasterizable {
     fn from(interaction: Path) -> Rasterizable {
         Rasterizable::Path(Box::new(interaction))
@@ -147,6 +149,12 @@ impl From<Text> for Rasterizable {
         Rasterizable::Text(Box::new(interaction))
     }
 }
+
+impl UInt for usize {
+    #[inline] fn zero() -> Self { 0 }
+    #[inline] fn as_usize(self) -> usize { self }
+}
+
 
 impl From<Box<dyn ImageRepresentation>> for Rasterizable {
     fn from(interaction: Box<dyn ImageRepresentation>) -> Rasterizable {
